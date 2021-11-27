@@ -94,19 +94,5 @@ public class Student implements Serializable {
     public String getNote() {
         return note;
     }
-    public void Input(String id){
-        Scanner scan=new Scanner(System.in);
-        this.id=id;
-        System.out.print("      Enter name: ");
-        name=scan.next();
-        System.out.print("      Enter mark: ");
-        mark=scan.nextDouble();
-        System.out.print("      Enter link image: ");
-        image=scan.next();
-        System.out.print("      Enter address: ");
-        address=scan.next();
-        System.out.print("      Enter note: ");
-        note=scan.next();
-    }
 }
 

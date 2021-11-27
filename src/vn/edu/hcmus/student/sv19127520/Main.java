@@ -762,16 +762,105 @@ public class Main {
         f5.pack();
         f5.setVisible(true);
     }
+
+    static JFrame f6=new JFrame("Login");
+    public static void createAndShowLogin(){
+        f6.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f6.setMinimumSize(new Dimension(w,h));
+
+        JPanel panel=new JPanel();
+        panel.setLayout(new GridLayout(4,0));
+
+
+        JLabel _user=new JLabel("User: ");
+        JTextField _textUser=new JTextField("",15);
+        JPanel user=new JPanel();
+        user.add(_user);
+        user.add(_textUser);
+        panel.add(user);
+
+        JLabel _pass=new JLabel("Password: ");
+        JPasswordField _textPass=new JPasswordField("",15);
+        JPanel pass=new JPanel();
+        pass.add(_pass);
+        pass.add(_textPass);
+        panel.add(pass);
+
+        JLabel _port=new JLabel("Port: ");
+        JTextField _textPort=new JTextField("",10);
+        JPanel port=new JPanel();
+        port.add(_port);
+        port.add(_textPort);
+        panel.add(port);
+
+        JPanel log=new JPanel();
+        JButton login=new JButton("Login");
+
+        log.add(login);
+        panel.add(log);
+
+
+        f6.setLayout(new GridLayout(3,0));
+        JPanel panel1=new JPanel();
+        panel1.setLayout(layout);
+
+        JLabel label=new JLabel("LOGIN");
+        label.setFont(new Font("",Font.BOLD,30));
+        panel1.add(label);
+
+        layout.putConstraint(SpringLayout.VERTICAL_CENTER,label,0,SpringLayout.VERTICAL_CENTER,panel1);
+        layout.putConstraint(SpringLayout.HORIZONTAL_CENTER,label,0,SpringLayout.HORIZONTAL_CENTER,panel1);
+
+        f6.add(panel1);
+        f6.add(panel);
+        f6.add(new JPanel());
+
+        ActionListener x=new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String s=e.getActionCommand();
+                if(s.equals("Login")){
+                    try {
+                        Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+                        String url="jdbc:sqlserver://localhost:"+_textPort.getText()
+                                +";databaseName=Quan_li_sinh_vien;user="+_textUser.getText()
+                                +";password="+new String(_textPass.getPassword())+";";
+
+                        if(_textPort.getText().equals("1433")&&_textUser.getText().equals("guest")&&new String(_textPass.getPassword()).equals("123456789")) {
+                            con = DriverManager.getConnection(url);
+                            if (con != null) {
+                                st = con.createStatement();
+                                JOptionPane.showMessageDialog(f6, "Login Successfull", "", JOptionPane.INFORMATION_MESSAGE);
+                                w = f6.getBounds().width;
+                                h = f6.getBounds().height;
+                                f6.getContentPane().removeAll();
+                                f6.dispose();
+                                createAndShowMenu();
+                                return;
+                            }
+                        }
+                            JOptionPane.showMessageDialog(f6,"Somthing wrong!","",JOptionPane.ERROR_MESSAGE);
+
+                    }
+                    catch (Exception ex){
+                        ex.printStackTrace();
+                    }
+                }
+            }
+        };
+        login.addActionListener(x);
+        f6.pack();
+        f6.setVisible(true);
+    }
     public static void main(String[] args) {
         try{
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            con= DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Quan_li_sinh_vien;user=guest;password=123456789");
-            st=con.createStatement();
+
         }
         catch (Exception e){
             e.printStackTrace();
         }
         //createData(); // Create Data
-        createAndShowMenu();
+        //createAndShowMenu();
+        createAndShowLogin();
     }
 }
