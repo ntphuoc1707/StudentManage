@@ -18,6 +18,7 @@ import java.io.*;
 import java.sql.*;
 import java.util.Random;
 import java.util.Vector;
+import java.util.concurrent.atomic.AtomicReference;
 
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -168,7 +169,7 @@ public class Main {
         j.setAlignmentX(Component.CENTER_ALIGNMENT);
         p.add(j);
         p.add(Box.createRigidArea(new Dimension(0,100)));
-
+        p.setBackground(Color.getHSBColor(0.5f,0.591f,0.922f));
 
 
         JButton button1=new JButton("List Students");
@@ -204,7 +205,7 @@ public class Main {
         middle.add(p);
         layout.putConstraint(SpringLayout.HORIZONTAL_CENTER,p,0,SpringLayout.HORIZONTAL_CENTER,middle);
         layout.putConstraint(SpringLayout.VERTICAL_CENTER,p,0,SpringLayout.VERTICAL_CENTER,middle);
-
+        middle.setBackground(Color.getHSBColor(0.5f,0.591f,0.922f));
         f.add(middle);
         f.pack();
         f.setVisible(true);
@@ -274,6 +275,7 @@ public class Main {
         columnModel.getColumn(2).setPreferredWidth(100);
         columnModel.getColumn(3).setPreferredWidth(40);
         columnModel.getColumn(6).setPreferredWidth(200);
+
         JPanel p=new JPanel();
         middle.setLayout(layout);
         middle.add(scrollPane);
@@ -285,11 +287,16 @@ public class Main {
         p.add(export);
         p.add(Box.createRigidArea(new Dimension(5,0)));
         p.add(cancel);
+        p.setBackground(Color.getHSBColor(0.5f,0.591f,0.922f));
         JPanel x=new JPanel();
         x.setLayout(new BoxLayout(x,BoxLayout.PAGE_AXIS));
-        x.add(Box.createRigidArea(new Dimension(0,10)));
+        JPanel k=new JPanel();
+        k.setBackground(Color.getHSBColor(0.5f,0.591f,0.922f));
+        JPanel kk=new JPanel();
+        kk.setBackground(Color.getHSBColor(0.5f,0.591f,0.922f));
+        x.add(k);
         x.add(p);
-        x.add(Box.createRigidArea(new Dimension(0,10)));
+        x.add(kk);
         middle.add(x);
         layout.putConstraint(SpringLayout.WEST,scrollPane,5,SpringLayout.WEST,middle);
         layout.putConstraint(SpringLayout.EAST,middle,5,SpringLayout.EAST,scrollPane);
@@ -316,6 +323,7 @@ public class Main {
         JLabel label=new JLabel("PROFILE");
         label.setFont(new Font("",Font.BOLD,20));
         pro.add(label);
+        pro.setBackground(Color.getHSBColor(0.5f,0.591f,0.922f));
         //id
         JPanel id=new JPanel();
         id.setLayout(layout);
@@ -328,6 +336,7 @@ public class Main {
         layout.putConstraint(SpringLayout.VERTICAL_CENTER,_id,0,SpringLayout.VERTICAL_CENTER,id);
         layout.putConstraint(SpringLayout.WEST,_textId,5,SpringLayout.EAST,_id);
         layout.putConstraint(SpringLayout.VERTICAL_CENTER,_textId,0,SpringLayout.VERTICAL_CENTER,id);
+        id.setBackground(Color.getHSBColor(0.5f,0.591f,0.922f));
 
         //name
         JPanel name=new JPanel();
@@ -341,7 +350,7 @@ public class Main {
         layout.putConstraint(SpringLayout.VERTICAL_CENTER,_name,0,SpringLayout.VERTICAL_CENTER,name);
         layout.putConstraint(SpringLayout.WEST,_textName,5,SpringLayout.EAST,_name);
         layout.putConstraint(SpringLayout.VERTICAL_CENTER,_textName,0,SpringLayout.VERTICAL_CENTER,name);
-
+        name.setBackground(Color.getHSBColor(0.5f,0.591f,0.922f));
 
         //Mark
         JPanel mark=new JPanel();
@@ -354,7 +363,7 @@ public class Main {
         layout.putConstraint(SpringLayout.VERTICAL_CENTER,_mark,0,SpringLayout.VERTICAL_CENTER,mark);
         layout.putConstraint(SpringLayout.WEST,_textMark,5,SpringLayout.EAST,_mark);
         layout.putConstraint(SpringLayout.VERTICAL_CENTER,_textMark,0,SpringLayout.VERTICAL_CENTER,mark);
-
+        mark.setBackground(Color.getHSBColor(0.5f,0.591f,0.922f));
 
         //Image
         JPanel image=new JPanel();
@@ -369,6 +378,7 @@ public class Main {
         layout.putConstraint(SpringLayout.NORTH,_textImage,5,SpringLayout.NORTH,image);
         layout.putConstraint(SpringLayout.SOUTH,image,5,SpringLayout.SOUTH,_textImage);
         layout.putConstraint(SpringLayout.EAST,image,5,SpringLayout.EAST,_textImage);
+        image.setBackground(Color.getHSBColor(0.5f,0.591f,0.922f));
 
         //Address
         JPanel address=new JPanel();
@@ -383,6 +393,7 @@ public class Main {
         layout.putConstraint(SpringLayout.NORTH,_textAddress,5,SpringLayout.NORTH,address);
         layout.putConstraint(SpringLayout.SOUTH,address,5,SpringLayout.SOUTH,_textAddress);
         layout.putConstraint(SpringLayout.EAST,address,5,SpringLayout.EAST,_textAddress);
+        address.setBackground(Color.getHSBColor(0.5f,0.591f,0.922f));
 
         //Note
         JPanel note=new JPanel();
@@ -397,6 +408,7 @@ public class Main {
         layout.putConstraint(SpringLayout.NORTH,_textNote,5,SpringLayout.NORTH,note);
         layout.putConstraint(SpringLayout.SOUTH,note,5,SpringLayout.SOUTH,_textNote);
         layout.putConstraint(SpringLayout.EAST,note,5,SpringLayout.EAST,_textNote);
+        note.setBackground(Color.getHSBColor(0.5f,0.591f,0.922f));
 
         //2button
         JPanel buttons=new JPanel();
@@ -404,7 +416,7 @@ public class Main {
         JButton cancel=new JButton("CANCEL");
         buttons.add(ok);
         buttons.add(cancel);
-
+        buttons.setBackground(Color.getHSBColor(0.5f,0.591f,0.922f));
         ActionListener x= e -> {
             String s=e.getActionCommand();
             if(s.equals("OK")){
@@ -473,13 +485,14 @@ public class Main {
             e.printStackTrace();
         }
         JPanel m=new JPanel();
+        //m.setBackground(Color.getHSBColor(0.5f,0.591f,0.922f));
         m.setLayout(new GridLayout(6,0));
         //Profile
         JPanel pro=new JPanel();
         JLabel label=new JLabel("PROFILE");
         label.setFont(new Font("",Font.BOLD,20));
         pro.add(label);
-
+        pro.setBackground(Color.getHSBColor(0.5f,0.591f,0.922f));
         //name
         JPanel name=new JPanel();
         name.setLayout(layout);
@@ -492,7 +505,7 @@ public class Main {
         layout.putConstraint(SpringLayout.VERTICAL_CENTER,_name,0,SpringLayout.VERTICAL_CENTER,name);
         layout.putConstraint(SpringLayout.WEST,_textName,5,SpringLayout.EAST,_name);
         layout.putConstraint(SpringLayout.VERTICAL_CENTER,_textName,0,SpringLayout.VERTICAL_CENTER,name);
-
+        name.setBackground(Color.getHSBColor(0.5f,0.591f,0.922f));
 
         //Mark
         JPanel mark=new JPanel();
@@ -505,7 +518,7 @@ public class Main {
         layout.putConstraint(SpringLayout.VERTICAL_CENTER,_mark,0,SpringLayout.VERTICAL_CENTER,mark);
         layout.putConstraint(SpringLayout.WEST,_textMark,5,SpringLayout.EAST,_mark);
         layout.putConstraint(SpringLayout.VERTICAL_CENTER,_textMark,0,SpringLayout.VERTICAL_CENTER,mark);
-
+        mark.setBackground(Color.getHSBColor(0.5f,0.591f,0.922f));
 
         //Image
         JPanel image=new JPanel();
@@ -520,6 +533,7 @@ public class Main {
         layout.putConstraint(SpringLayout.NORTH,_textImage,5,SpringLayout.NORTH,image);
         layout.putConstraint(SpringLayout.SOUTH,image,5,SpringLayout.SOUTH,_textImage);
         layout.putConstraint(SpringLayout.EAST,image,5,SpringLayout.EAST,_textImage);
+        image.setBackground(Color.getHSBColor(0.5f,0.591f,0.922f));
 
         //Address
         JPanel address=new JPanel();
@@ -534,6 +548,7 @@ public class Main {
         layout.putConstraint(SpringLayout.NORTH,_textAddress,5,SpringLayout.NORTH,address);
         layout.putConstraint(SpringLayout.SOUTH,address,5,SpringLayout.SOUTH,_textAddress);
         layout.putConstraint(SpringLayout.EAST,address,5,SpringLayout.EAST,_textAddress);
+        address.setBackground(Color.getHSBColor(0.5f,0.591f,0.922f));
 
         //Note
         JPanel note=new JPanel();
@@ -548,11 +563,13 @@ public class Main {
         layout.putConstraint(SpringLayout.NORTH,_textNote,5,SpringLayout.NORTH,note);
         layout.putConstraint(SpringLayout.SOUTH,note,5,SpringLayout.SOUTH,_textNote);
         layout.putConstraint(SpringLayout.EAST,note,5,SpringLayout.EAST,_textNote);
+        note.setBackground(Color.getHSBColor(0.5f,0.591f,0.922f));
 
         //2button
         JPanel buttons=new JPanel();
         JButton ok=new JButton("OK");
         buttons.add(ok);
+        buttons.setBackground(Color.getHSBColor(0.5f,0.591f,0.922f));
         ActionListener z= e -> {
             String s=e.getActionCommand();
             if(s.equals("OK")){
@@ -590,6 +607,9 @@ public class Main {
         m.add(address);
         m.add(note);
         m.add(buttons);
+        JPanel p=new JPanel();
+        p.setBackground(Color.getHSBColor(0.5f,0.591f,0.922f));
+        m.add(p);
         return m;
     }
     static JFrame f4=new JFrame("Update Student");
@@ -598,6 +618,7 @@ public class Main {
         f4.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f4.setMinimumSize(new Dimension(w,h));
         f4.setLayout(new BorderLayout());
+        f4.setBackground(Color.getHSBColor(0.5f,0.591f,0.922f));
         JPanel panel=new JPanel();
         JTextField textField=new JTextField("",15);
         JButton t=new JButton("Find");
@@ -607,17 +628,23 @@ public class Main {
         panel.add(t);
         JButton cancel=new JButton("Return");
         panel.add(cancel);
-
+        panel.setBackground(Color.getHSBColor(0.5f,0.591f,0.922f));
         f4.add(panel,BorderLayout.PAGE_START);
+        AtomicReference<JPanel> panel1= new AtomicReference<>(new JPanel());
+        panel1.get().setBackground(Color.getHSBColor(0.5f,0.591f,0.922f));
+        f4.add(panel1.get(),BorderLayout.CENTER);
         ActionListener x= e -> {
             String s=e.getActionCommand();
-            JPanel panel1 =createForm(textField.getText());
+            panel1.set(createForm(textField.getText()));
             if(s.equals("Find")){
                 if(ListStudents.checkExis(con,textField.getText())) {
-                    f4.remove(panel1);
-                    f4.add(panel1, BorderLayout.CENTER);
+                    f4.getContentPane().removeAll();
+                    f4.add(panel,BorderLayout.PAGE_START);
+                    f4.remove(panel1.get());
+                    f4.add(panel1.get(), BorderLayout.CENTER);
                     f4.pack();
                     f4.setVisible(true);
+
                 }
                 else
                     if(textField.getText().equals(""))
@@ -629,7 +656,7 @@ public class Main {
             if(s.equals("Return")){
                 w=f4.getBounds().width;
                 h=f4.getBounds().height;
-                panel1.removeAll();
+                panel1.get().removeAll();
                 f4.getContentPane().removeAll();
                 f4.dispose();
                 createAndShowMenu();
@@ -659,7 +686,7 @@ public class Main {
         }
         JPanel m=new JPanel();
         m.setLayout(new BoxLayout(m,BoxLayout.Y_AXIS));
-
+        m.setBackground(Color.getHSBColor(0.5f,0.591f,0.922f));
         JLabel label=new JLabel("ID: "+t.getid());
         label.setFont(new Font("",Font.ITALIC,15));
         label.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -731,7 +758,11 @@ public class Main {
         panel.add(t);
         JButton cancel=new JButton("Return");
         panel.add(cancel);
+        panel.setBackground(Color.getHSBColor(0.5f,0.591f,0.922f));
+       JPanel panel1= new JPanel();
+        panel1.setBackground(Color.getHSBColor(0.5f,0.591f,0.922f));
         f5.add(panel,BorderLayout.PAGE_START);
+        f5.add(panel1,BorderLayout.CENTER);
         ActionListener x= e -> {
             String s=e.getActionCommand();
             if(s.equals("Find")){
@@ -772,30 +803,33 @@ public class Main {
         panel.setLayout(new GridLayout(4,0));
 
 
-        JLabel _user=new JLabel("User: ");
+        JLabel _user=new JLabel("User(guest): ");
         JTextField _textUser=new JTextField("",15);
         JPanel user=new JPanel();
         user.add(_user);
         user.add(_textUser);
+        user.setBackground(Color.getHSBColor(0.5f,0.591f,0.922f));
         panel.add(user);
 
-        JLabel _pass=new JLabel("Password: ");
+        JLabel _pass=new JLabel("Password(123456789): ");
         JPasswordField _textPass=new JPasswordField("",15);
         JPanel pass=new JPanel();
+        pass.setBackground(Color.getHSBColor(0.5f,0.591f,0.922f));
         pass.add(_pass);
         pass.add(_textPass);
         panel.add(pass);
 
-        JLabel _port=new JLabel("Port: ");
+        JLabel _port=new JLabel("Port(1433): ");
         JTextField _textPort=new JTextField("",10);
         JPanel port=new JPanel();
+        port.setBackground(Color.getHSBColor(0.5f,0.591f,0.922f));
         port.add(_port);
         port.add(_textPort);
         panel.add(port);
 
         JPanel log=new JPanel();
         JButton login=new JButton("Login");
-
+        log.setBackground(Color.getHSBColor(0.5f,0.591f,0.922f));
         log.add(login);
         panel.add(log);
 
@@ -807,13 +841,15 @@ public class Main {
         JLabel label=new JLabel("LOGIN");
         label.setFont(new Font("",Font.BOLD,30));
         panel1.add(label);
-
+        panel1.setBackground(Color.getHSBColor(0.5f,0.591f,0.922f));
         layout.putConstraint(SpringLayout.VERTICAL_CENTER,label,0,SpringLayout.VERTICAL_CENTER,panel1);
         layout.putConstraint(SpringLayout.HORIZONTAL_CENTER,label,0,SpringLayout.HORIZONTAL_CENTER,panel1);
 
         f6.add(panel1);
         f6.add(panel);
-        f6.add(new JPanel());
+        JPanel k=new JPanel();
+        k.setBackground(Color.getHSBColor(0.5f,0.591f,0.922f));
+        f6.add(k);
 
         ActionListener x=new ActionListener() {
             @Override
@@ -840,7 +876,6 @@ public class Main {
                             }
                         }
                             JOptionPane.showMessageDialog(f6,"Somthing wrong!","",JOptionPane.ERROR_MESSAGE);
-
                     }
                     catch (Exception ex){
                         ex.printStackTrace();
